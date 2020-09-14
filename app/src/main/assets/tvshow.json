@@ -1,0 +1,258 @@
+[
+  {
+    "original_name": "Lucifer",
+    "genre": [
+      "Crime",
+      "Sci-Fi & Fantasy"
+    ],
+    "title": "Lucifer",
+    "popularity": 928.407,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 4491,
+    "first_air_date": "2016-01-25",
+    "backdrop_path": "/ta5oblpMlEcIPIS2YGcq9XEkWK2.jpg",
+    "original_language": "en",
+    "runtime": 45,
+    "id": 63174,
+    "vote_average": 8.5,
+    "overview": "Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles, where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from the underworld, the greater the threat that the worst of humanity could escape.",
+    "poster_path": "/4EYPN5mVIhKLfxGruy7Dy41dTVn.jpg"
+  },
+  {
+    "original_name": "Lovecraft Country",
+    "genre": [
+      "Drama",
+      "Mystery",
+      "Sci-Fi & Fantasy"
+    ],
+    "title": "Lovecraft Country",
+    "popularity": 392.943,
+    "origin_country": [
+      "US"
+    ],
+    "runtime": 60,
+    "vote_count": 104,
+    "first_air_date": "2020-08-16",
+    "backdrop_path": "/qx7qy2GJOc7yGY6WENyBU3OVv7A.jpg",
+    "original_language": "en",
+    "id": 82816,
+    "vote_average": 7.2,
+    "overview": "The anthology horror series follows 25-year-old Atticus Freeman, who joins up with his friend Letitia and his Uncle George to embark on a road trip across 1950s Jim Crow America to find his missing father. They must survive and overcome both the racist terrors of white America and the malevolent spirits that could be ripped from a Lovecraft paperback.",
+    "poster_path": "/fz7bdjxPColvEWCGr5Kiclzc86d.jpg"
+  },
+  {
+    "original_name": "The Boys",
+    "genre": [
+      "Sci-Fi & Fantasy",
+      "Action & Adventure"
+    ],
+    "title": "The Boys",
+    "popularity": 343.451,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 980,
+    "first_air_date": "2019-07-25",
+    "backdrop_path": "/bI37vIHSH7o4IVkq37P8cfxQGMx.jpg",
+    "original_language": "en",
+    "id": 76479,
+    "runtime": 60,
+    "vote_average": 8.3,
+    "overview": "A group of vigilantes known informally as “The Boys” set out to take down corrupt superheroes with no more than blue-collar grit and a willingness to fight dirty.",
+    "poster_path": "/e7oHnWqqdC9JRxKCJFfpUaKX66U.jpg"
+  },
+  {
+    "original_name": "Law & Order: Special Victims Unit",
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "title": "Law & Order: Special Victims Unit",
+    "popularity": 290.375,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 1588,
+    "first_air_date": "1999-09-20",
+    "backdrop_path": "/cD9PxbrdWYgL7MUpD9eOYuiSe2P.jpg",
+    "original_language": "en",
+    "id": 2734,
+    "runtime": 43,
+    "vote_average": 7.4,
+    "overview": "In the criminal justice system, sexually-based offenses are considered especially heinous. In New York City, the dedicated detectives who investigate these vicious felonies are members of an elite squad known as the Special Victims Unit. These are their stories.",
+    "poster_path": "/6t6r1VGQTTQecN4V0sZeqsmdU9g.jpg"
+  },
+  {
+    "original_name": "The 100",
+    "genre": [
+      "Sci-Fi & Fantasy",
+      "Drama",
+      "Action & Adventure"
+    ],
+    "title": "The 100",
+    "popularity": 276.329,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 4072,
+    "first_air_date": "2014-03-19",
+    "backdrop_path": "/hTExot1sfn7dHZjGrk0Aiwpntxt.jpg",
+    "original_language": "en",
+    "id": 48866,
+    "runtime": 43,
+    "vote_average": 7.7,
+    "overview": "100 years in the future, when the Earth has been abandoned due to radioactivity, the last surviving humans live on an ark orbiting the planet — but the ark won't last forever. So the repressive regime picks 100 expendable juvenile delinquents to send down to Earth to see if the planet is still habitable.",
+    "poster_path": "/wcaDIAG1QdXQLRaj4vC1EFdBT2.jpg"
+  },
+  {
+    "original_name": "Supernatural",
+    "genre": [
+      "Drama",
+      "Mystery",
+      "Sci-Fi & Fantasy"
+    ],
+    "title": "Supernatural",
+    "popularity": 280.672,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 3672,
+    "first_air_date": "2005-09-13",
+    "backdrop_path": "/nVRyd8hlg0ZLxBn9RaI7mUMQLnz.jpg",
+    "original_language": "en",
+    "id": 1622,
+    "runtime": 45,
+    "vote_average": 8,
+    "overview": "When they were boys, Sam and Dean Winchester lost their mother to a mysterious and demonic supernatural force. Subsequently, their father raised them to be soldiers. He taught them about the paranormal evil that lives in the dark corners and on the back roads of America ... and he taught them how to kill it. Now, the Winchester brothers crisscross the country in their '67 Chevy Impala, battling every kind of supernatural threat they encounter along the way. ",
+    "poster_path": "/KoYWXbnYuS3b0GyQPkbuexlVK9.jpg"
+  },
+  {
+    "original_name": "The Simpsons",
+    "id": 456,
+    "title": "The Simpsons",
+    "popularity": 254.038,
+    "vote_count": 4444,
+    "vote_average": 7.6,
+    "runtime": 22,
+    "first_air_date": "1989-12-16",
+    "poster_path": "/qcr9bBY6MVeLzriKCmJOv1562uY.jpg",
+    "genre": [
+      "Animation",
+      "Comedy",
+      "Family"
+    ],
+    "original_language": "en",
+    "backdrop_path": "/adZ9ldSlkGfLfsHNbh37ZThCcgU.jpg",
+    "overview": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.",
+    "origin_country": [
+      "US"
+    ]
+  },
+  {
+    "original_name": "The Flash",
+    "genre": [
+      "Drama",
+      "Sci-Fi & Fantasy"
+    ],
+    "title": "The Flash",
+    "popularity": 267.37,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 5484,
+    "first_air_date": "2014-10-07",
+    "backdrop_path": "/jC1KqsFx8ZyqJyQa2Ohi7xgL7XC.jpg",
+    "original_language": "en",
+    "id": 60735,
+    "runtime": 44,
+    "vote_average": 7.5,
+    "overview": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
+    "poster_path": "/wHa6KOJAoNTFLFtp7wguUJKSnju.jpg"
+  },
+  {
+    "original_name": "The Vow",
+    "genre": [
+      "Documentary"
+    ],
+    "title": "The Vow",
+    "popularity": 305.103,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 3,
+    "first_air_date": "2020-08-23",
+    "backdrop_path": "/mcwkWBYWfHjzEiuu5y9aCqXnj8b.jpg",
+    "original_language": "en",
+    "id": 49920,
+    "runtime": null,
+    "vote_average": 4.7,
+    "overview": "The docuseries follows people deeply involved in the group NXIVM — which is faced with various charges, including sex trafficking and racketeering conspiracy — over the course of several years.",
+    "poster_path": "/RNt1YY8D1inKVQO7uRMZnUbz2k.jpg"
+  },
+  {
+    "original_name": "Grey's Anatomy",
+    "genre": [
+      "Drama"
+    ],
+    "title": "Grey's Anatomy",
+    "popularity": 215.252,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 3390,
+    "first_air_date": "2005-03-27",
+    "backdrop_path": "/edmk8xjGBsYVIf4QtLY9WMaMcXZ.jpg",
+    "original_language": "en",
+    "id": 1416,
+    "runtime": 43,
+    "vote_average": 8,
+    "overview": "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
+    "poster_path": "/jnsvc7gCKocXnrTXF6p03cICTWb.jpg"
+  },
+  {
+    "original_name": "The Umbrella Academy",
+    "genre": [
+      "Action & Adventure",
+      "Sci-Fi & Fantasy",
+      "Comedy",
+      "Drama"
+    ],
+    "title": "The Umbrella Academy",
+    "popularity": 241.331,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 1462,
+    "first_air_date": "2019-02-15",
+    "backdrop_path": "/qJxzjUjCpTPvDHldNnlbRC4OqEh.jpg",
+    "original_language": "en",
+    "id": 75006,
+    "vote_average": 8.6,
+    "runtime": 55,
+    "overview": "A dysfunctional family of superheroes comes together to solve the mystery of their father's death, the threat of the apocalypse and more.",
+    "poster_path": "/scZlQQYnDVlnpxFTxaIv2g0BWnL.jpg"
+  },
+  {
+    "original_title": "Game of Thrones",
+    "genre": [
+      "Sci-Fi & Fantasy",
+      "Drama"
+    ],
+    "title": "Game of Thrones",
+    "popularity": 205.298,
+    "origin_country": [
+      "US"
+    ],
+    "vote_count": 10061,
+    "first_air_date": "2011-04-17",
+    "backdrop_path": "/suopoADq0k8YZr4dQXcU6pToj6s.jpg",
+    "original_language": "en",
+    "id": 1399,
+    "runtime": 60,
+    "vote_average": 8.3,
+    "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+    "poster_path": "/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg"
+  }
+]

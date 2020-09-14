@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">MovieTv</string>
+    <string name="movies">Movies</string>
+    <string name="tv_shows">TV Shows</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="discover">Discover</string>
+
+    <string name="base_image_url">https://image.tmdb.org/t/p/w500</string>
+    <string name="duration">Duration</string>
+    <string name="out_of_ten">/10</string>
+    <string name="average_rating">Average Rating</string>
+    <string name="votes">Votes</string>
+    <string name="language">Language</string>
+    <string name="overview">Overview</string>
+    <string name="cast">Cast</string>
+    <string name="released_at">Released at</string>
+    <string name="all">All</string>
+    <string name="favorites">Favorites</string>
+    <string name="sort">sort</string>
+    <string name="item_telah_dihapus">Item telah dihapus ke daftar favorit</string>
+    <string name="item_telah_ditambahkan">Item telah ditambahkan ke daftar favorit</string>
+</resources>
