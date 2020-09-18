@@ -1,86 +1,77 @@
 package com.example.movietv.data.repository
 
-import androidx.paging.DataSource
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.rxjava2.flowable
 import com.example.movietv.callback.GetDetailMovieTvCallback
-import com.example.movietv.callback.GetMovieTvCallback
 import com.example.movietv.data.datasource.local.LocalDataSource
 import com.example.movietv.data.datasource.room.AppDao
 import com.example.movietv.data.datasource.room.RoomDataSource
-import com.example.movietv.data.datasource.room.rx.GetFavMovieListRxPagingSource
-import com.example.movietv.data.datasource.room.rx.GetFavTvShowListRxPagingSource
 import com.example.movietv.data.datasource.room.rx.GetMovieListRxPagingSource
+import com.example.movietv.data.datasource.room.rx.GetTvShowListRxPagingSource
 import com.example.movietv.data.model.FavoriteMovieEntity
-import com.example.movietv.data.model.MovieTvModel
+import com.example.movietv.data.model.MovieModel
+import com.example.movietv.data.model.TvShowModel
 import io.reactivex.Flowable
 
 class MovieTvRepository(
-    val favMovieListDataSource : GetFavMovieListRxPagingSource,
-    val favTvShowListDataSource : GetFavTvShowListRxPagingSource,
+    val dao : AppDao,
     val movieListDataSource : GetMovieListRxPagingSource,
-    val tvShowListDataSource: GetFavTvShowListRxPagingSource,
+    val tvShowListDataSource: GetTvShowListRxPagingSource,
     val localDataSource: LocalDataSource,
     val roomDataSource: RoomDataSource
     ) {
 
-    fun getMovie() : Flowable<PagingData<MovieTvModel>> = Pager(
+    fun getMovie() : Flowable<PagingData<MovieModel>> = Pager(
         config = PagingConfig(
-            pageSize = 6,
+            pageSize = 20,
+            enablePlaceholders = true,
+            maxSize = 30,
             prefetchDistance = 5,
-            enablePlaceholders = false
+            initialLoadSize = 20
         ),
-        pagingSourceFactory = {favMovieListDataSource}
+        remoteMediator = movieListDataSource
+        ,pagingSourceFactory = {roomDataSource.getAllMovie()}
     ).flowable
 
-    fun getTvShow() : Flowable<PagingData<MovieTvModel>> = Pager(
+    fun getTvShow() : Flowable<PagingData<TvShowModel>> = Pager(
         config = PagingConfig(
-            pageSize = 6,
+            pageSize = 20,
+            enablePlaceholders = true,
+            maxSize = 30,
             prefetchDistance = 5,
+            initialLoadSize = 20
         ),
-        pagingSourceFactory = {favTvShowListDataSource}
+        remoteMediator = tvShowListDataSource
+        ,pagingSourceFactory = {roomDataSource.getAllTvShow()}
     ).flowable
 
-    fun getFavMovie() : Flowable<PagingData<MovieTvModel>> = Pager(
-        config = PagingConfig(
-            pageSize = 6,
-        ),
-        pagingSourceFactory = {favMovieListDataSource}
-    ).flowable
-
-    fun getFavTvShow() : Flowable<PagingData<MovieTvModel>> = Pager(
-        config = PagingConfig(
-            pageSize = 6,
-        ),
-        pagingSourceFactory = {favTvShowListDataSource}
-    ).flowable
-
-    fun getDetailMovie(id : Int,callback : GetDetailMovieTvCallback){
+    fun getDetailMovie(id : Long,callback : GetDetailMovieTvCallback<MovieModel>){
         callback.onSuccess(
-            localDataSource.getDetailMovie(id) ?: MovieTvModel()
+            localDataSource.getDetailMovie(id) ?: MovieModel()
         )
     }
 
-    fun getDetailTvShow(id : Int,callback : GetDetailMovieTvCallback){
-        callback.onSuccess(localDataSource.getDetailTvShow(id) ?: MovieTvModel())
+    fun getDetailTvShow(id : Long,callback : GetDetailMovieTvCallback<TvShowModel>){
+        callback.onSuccess(localDataSource.getDetailTvShow(id) ?: TvShowModel())
     }
 
-    fun addFavoriteMovie(id: Int){
-        roomDataSource.addFavoriteMovie(id)
+    fun setFavoriteMovie(movie: MovieModel){
+        movie.isFav = !movie.isFav
+        roomDataSource.setFavoriteMovie(movie)
     }
 
-    fun addFavoriteTvShow(id: Int){
-        roomDataSource.addFavoriteTvShow(id)
-    }
-
-    fun deleteFavoriteMovie(id: Int){
-        roomDataSource.deleteFavoriteMovie(id)
-    }
-
-    fun deleteFavoriteTvShow(id: Int){
-        roomDataSource.deleteFavoriteTvShow(id)
-    }
+//    fun addFavoriteTvShow(id: Int){
+//        roomDataSource.addFavoriteTvShow(id)
+//    }
+//
+//    fun deleteFavoriteMovie(id: Int){
+//        roomDataSource.deleteFavoriteMovie(id)
+//    }
+//
+//    fun deleteFavoriteTvShow(id: Int){
+//        roomDataSource.deleteFavoriteTvShow(id)
+//    }
 
 }

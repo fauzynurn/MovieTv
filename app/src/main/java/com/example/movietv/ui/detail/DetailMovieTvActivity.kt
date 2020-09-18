@@ -22,14 +22,14 @@ class DetailMovieTvActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_movie_tv_detail)
-        var id = intent.getIntExtra(Constant.MOVIE_ID, -1)
-        if (id == -1) {
-            id = intent.getIntExtra(Constant.TVSHOW_ID, -1)
+        var id = intent.getLongExtra(Constant.MOVIE_ID, -1)
+        if (id == (-1).toLong()) {
+            id = intent.getLongExtra(Constant.TVSHOW_ID, -1)
             viewModel.getTvShow(id)
         }else{
             viewModel.getMovie(id)
         }
-        viewModel.movieTv.observe(this, Observer {
+        viewModel.movie.observe(this, {
             data ->
             with(dataBinding) {
                 Glide.with(this@DetailMovieTvActivity)

@@ -1,28 +1,65 @@
 package com.example.movietv.data.datasource.room
 
 import androidx.paging.DataSource
+import androidx.paging.PagingSource
 import androidx.room.*
-import com.example.movietv.data.model.FavoriteMovieEntity
-import com.example.movietv.data.model.FavoriteTvShowEntity
+import com.example.movietv.data.model.*
 import io.reactivex.Single
 
 @Dao
 interface AppDao {
-    @Insert
-    fun insertFavoriteMovie(favMovie : FavoriteMovieEntity)
 
-    @Insert
-    fun insertFavoriteTvShow(favTvShow: FavoriteTvShowEntity)
+    @Query("SELECT * FROM moviemodel")
+    fun getAllMovie() : PagingSource<Int,MovieModel>
+
+    @Query("SELECT * FROM tvshowmodel")
+    fun getAllTvShow() : PagingSource<Int,TvShowModel>
 
     @Query("SELECT * FROM favoritemovieentity")
-    fun getFavoriteMovie() : Single<List<FavoriteMovieEntity>>
+    fun getAllFavMovieId() : Single<List<FavoriteMovieEntity>?>
 
     @Query("SELECT * FROM favoritetvshowentity")
-    fun getFavoriteTvShow() : Single<List<FavoriteTvShowEntity>>
+    fun getAllFavTvShowId() : Single<List<FavoriteTvShowEntity>>
 
-    @Delete
-    fun deleteFavoriteMovie(favMovie : FavoriteMovieEntity)
+    @Query("DELETE FROM moviemodel")
+    fun clearAllMovie()
 
-    @Delete
-    fun deleteFavoriteTvShow(favTvShow: FavoriteTvShowEntity)
+    @Query("DELETE FROM tvshowmodel")
+    fun clearAllTvShow()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllMovie(list : List<MovieModel>) : List<Long>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllTvShow(list : List<TvShowModel>)
+
+    @Update
+    fun setFavoriteMovie(favMovie : MovieModel)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertFavoriteMovie(favMovie : FavoriteMovieEntity)
+
+    @Update
+    fun setFavoriteTvShow(favTvShow: TvShowModel)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertFavoriteTvShow(favTvShow : FavoriteTvShowEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllMovieKey(key: List<MovieRemoteKey>)
+
+    @Query("SELECT * FROM movie_remote_key WHERE id = :movieId")
+    fun getMovieKeyById(movieId: Long): MovieRemoteKey?
+
+    @Query("DELETE FROM movie_remote_key")
+    fun clearAllMovieKey()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllTvShowKey(key: List<TvShowRemoteKey>)
+
+    @Query("SELECT * FROM tvshow_remote_key WHERE id = :tvShowId")
+    fun getTvShowKeyById(tvShowId: Long): TvShowRemoteKey?
+
+    @Query("DELETE FROM tvshow_remote_key")
+    fun clearAllTvShowKey()
 }

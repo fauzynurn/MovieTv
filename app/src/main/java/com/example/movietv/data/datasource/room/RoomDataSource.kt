@@ -1,7 +1,10 @@
 package com.example.movietv.data.datasource.room
 
-import com.example.movietv.data.model.FavoriteMovieEntity
-import com.example.movietv.data.model.FavoriteTvShowEntity
+import androidx.paging.PagingSource
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.example.movietv.data.model.*
 import io.reactivex.Single
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -9,23 +12,60 @@ import java.util.concurrent.Executors
 class RoomDataSource(val appDao: AppDao) {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 
-    fun addFavoriteMovie(id: Int){
-        executorService.execute { appDao.insertFavoriteMovie(FavoriteMovieEntity(id)) }
+    fun setFavoriteMovie(movie : MovieModel) {
+        executorService.execute { appDao.setFavoriteMovie(movie) }
     }
 
-    fun addFavoriteTvShow(id: Int){
-        executorService.execute { appDao.insertFavoriteTvShow(FavoriteTvShowEntity(id)) }
+    fun setFavoriteTvShow(tvShow : TvShowModel) {
+        executorService.execute { appDao.setFavoriteTvShow(tvShow) }
     }
 
-    fun deleteFavoriteMovie(id: Int){
-        executorService.execute {appDao.deleteFavoriteMovie(FavoriteMovieEntity(id))}
+    fun getMovieKeyById(id: Long): MovieRemoteKey? = appDao.getMovieKeyById(id)
+
+    fun getTvShowKeyById(id: Long): TvShowRemoteKey? = appDao.getTvShowKeyById(id)
+
+    fun clearAllMovieKey(){
+        executorService.execute { appDao.clearAllMovieKey() }
     }
 
-    fun deleteFavoriteTvShow(id: Int){
-        executorService.execute{appDao.deleteFavoriteTvShow(FavoriteTvShowEntity(id))}
+    fun clearAllTvShowKey(){
+        executorService.execute { appDao.clearAllTvShowKey() }
     }
 
-    fun getFavoriteMovieId() : Single<List<FavoriteMovieEntity>> = appDao.getFavoriteMovie()
+    fun clearAllMovie(){
+        executorService.execute { appDao.clearAllMovie() }
+    }
 
-    fun getFavoriteTvShowId() : Single<List<FavoriteTvShowEntity>> = appDao.getFavoriteTvShow()
+    fun clearAllTvShow(){
+        executorService.execute { appDao.clearAllTvShow() }
+    }
+
+    fun insertAllMovieKey(key: List<MovieRemoteKey>){
+        executorService.execute { appDao.insertAllMovieKey(key) }
+    }
+
+    fun insertAllTvShowKey(key: List<TvShowRemoteKey>){
+        executorService.execute { appDao.insertAllTvShowKey(key) }
+    }
+
+    fun insertAllMovie(list : List<MovieModel>) {
+        executorService.execute { appDao.insertAllMovie(list) }
+    }
+
+    fun insertAllTvShow(list : List<TvShowModel>) {
+        executorService.execute { appDao.insertAllTvShow(list) }
+    }
+
+    fun getAllMovie() : PagingSource<Int, MovieModel> = appDao.getAllMovie()
+    fun getAllTvShow() : PagingSource<Int, TvShowModel> = appDao.getAllTvShow()
+
+    fun getAllFavMovie() : Single<List<FavoriteMovieEntity>?> = appDao.getAllFavMovieId()
+    fun getAllFavTvShow() : Single<List<FavoriteTvShowEntity>> = appDao.getAllFavTvShowId()
+
+    fun insertFavoriteMovie(movie : FavoriteMovieEntity){
+        executorService.execute { appDao.insertFavoriteMovie(movie)}
+    }
+    fun insertFavoriteMovie(tvShow : FavoriteTvShowEntity){
+        executorService.execute { appDao.insertFavoriteTvShow(tvShow)}
+    }
 }

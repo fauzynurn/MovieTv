@@ -11,5 +11,5 @@ import kotlinx.android.parcel.Parcelize
 data class FavoriteTvShowEntity (
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
-    var id : Int = 0
+    var id : Long = 0
 ) : Parcelable

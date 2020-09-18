@@ -1,11 +1,24 @@
 package com.example.movietv.data.model
 
+import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.example.movietv.utils.converter.ListCastConverter
+import com.example.movietv.utils.converter.ListStringConverter
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-data class MovieTvModel (
-    val id : Int = -1,
+@Entity
+@Parcelize
+@TypeConverters(value = [ListStringConverter::class, ListCastConverter::class])
+data class TvShowModel (
+    @PrimaryKey(autoGenerate = true)
+    val idInDb : Long = 0,
+    val id : Long = -1,
     @SerializedName("original_language")
     val language : String = "",
+    @SerializedName("name")
     val title : String = "",
     @SerializedName("poster_path")
     val posterUrl : String = "",
@@ -26,10 +39,4 @@ data class MovieTvModel (
     @SerializedName("vote_count")
     val vote : Int = 0,
     var isFav : Boolean = false
-)
-
-data class Cast(
-    val name : String,
-    @SerializedName("profile_path")
-    val profilePath : String
-)
+) : Parcelable

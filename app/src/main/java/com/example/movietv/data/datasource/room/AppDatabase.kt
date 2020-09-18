@@ -4,10 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.movietv.data.model.FavoriteMovieEntity
-import com.example.movietv.data.model.FavoriteTvShowEntity
+import com.example.movietv.data.model.*
 
-@Database(entities = [FavoriteMovieEntity::class,FavoriteTvShowEntity::class], version = 1)
+@Database(entities = [
+    Cast::class,MovieModel::class,
+    TvShowModel::class,
+    MovieRemoteKey::class,
+    TvShowRemoteKey::class,
+    FavoriteMovieEntity::class,
+    FavoriteTvShowEntity::class
+], version = 1, exportSchema = false)
 abstract class AppRoomDatabase : RoomDatabase() {
 
     abstract fun appDao(): AppDao
@@ -21,10 +27,10 @@ abstract class AppRoomDatabase : RoomDatabase() {
             if (INSTANCE == null) {
                 synchronized(AppRoomDatabase::class.java) {
                     if (INSTANCE == null) {
-                        INSTANCE = Room.inMemoryDatabaseBuilder(
+                        INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
                             AppRoomDatabase::class.java
-//                            ,"app_database.db"
+                            ,"app_database.db"
                         )
                             .build()
                     }

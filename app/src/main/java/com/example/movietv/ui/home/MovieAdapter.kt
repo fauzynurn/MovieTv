@@ -1,11 +1,9 @@
 package com.example.movietv.ui.home
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.paging.PagedListAdapter
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,14 +11,14 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.movietv.R
 import com.example.movietv.callback.MovieTvCallback
-import com.example.movietv.data.model.MovieTvModel
+import com.example.movietv.data.model.MovieModel
 import com.example.movietv.databinding.VhItemBinding
 import com.example.movietv.utils.DateTimeConverter
 
-class MovieTvAdapter(val callback : MovieTvCallback) : PagingDataAdapter<MovieTvModel, MovieTvAdapter.MovieTvViewHolder>(DIFF_CALLBACK) {
+class MovieAdapter(val callback : MovieTvCallback<MovieModel>) : PagingDataAdapter<MovieModel, MovieAdapter.MovieTvViewHolder>(DIFF_CALLBACK) {
 
-    class MovieTvViewHolder(val context: Context, val binding: VhItemBinding, val callback : MovieTvCallback) : RecyclerView.ViewHolder(binding.root){
-        fun bind(data : MovieTvModel){
+    class MovieTvViewHolder(val context: Context, val binding: VhItemBinding, val callback : MovieTvCallback<MovieModel>) : RecyclerView.ViewHolder(binding.root){
+        fun bind(data : MovieModel){
             with(binding){
                 root.setOnClickListener { callback.onClick(data.id) }
                 title.text = data.title
@@ -29,12 +27,11 @@ class MovieTvAdapter(val callback : MovieTvCallback) : PagingDataAdapter<MovieTv
                     .apply(RequestOptions.placeholderOf(R.color.grey)
                         .error(R.color.grey))
                     .into(binding.image)
-                genre.text = data.genre.joinToString(",")
+                genre.text = data.genre?.joinToString(",")
                 rating.text = data.rating.toString()
                 duration.text = DateTimeConverter.convertMinutesToHourMinutes(data.duration)
                 favIcon.setOnClickListener {
-                    data.isFav = !data.isFav
-                    callback.onFavIconClicked(data.id,data.isFav)
+                    callback.onFavIconClicked(data,data.isFav)
                 }
                 if(data.isFav) favIcon.setColorFilter(ContextCompat.getColor(context,R.color.pink)) else favIcon.setColorFilter(ContextCompat.getColor(context,R.color.white))
             }
@@ -48,17 +45,17 @@ class MovieTvAdapter(val callback : MovieTvCallback) : PagingDataAdapter<MovieTv
     }
 
     override fun onBindViewHolder(holder: MovieTvViewHolder, position: Int) {
-        holder.bind(getItem(position) as MovieTvModel)
+        holder.bind(getItem(position) as MovieModel)
     }
 
     companion object {
-        private val DIFF_CALLBACK: DiffUtil.ItemCallback<MovieTvModel> = object : DiffUtil.ItemCallback<MovieTvModel>() {
-            override fun areItemsTheSame(oldNote: MovieTvModel, newNote: MovieTvModel): Boolean {
-                return oldNote.id == newNote.id
+        private val DIFF_CALLBACK: DiffUtil.ItemCallback<MovieModel> = object : DiffUtil.ItemCallback<MovieModel>() {
+            override fun areItemsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldNote: MovieTvModel, newNote: MovieTvModel): Boolean {
-                return oldNote == newNote
+            override fun areContentsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
+                return oldItem == newItem
             }
         }
     }
