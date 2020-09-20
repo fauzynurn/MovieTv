@@ -13,6 +13,7 @@ import com.example.movietv.R
 import com.example.movietv.callback.MovieTvCallback
 import com.example.movietv.data.model.TvShowModel
 import com.example.movietv.databinding.VhItemBinding
+import com.example.movietv.utils.Constant
 import com.example.movietv.utils.DateTimeConverter
 
 class TvShowAdapter(val callback : MovieTvCallback<TvShowModel>) : PagingDataAdapter<TvShowModel, TvShowAdapter.MovieTvViewHolder>(DIFF_CALLBACK) {
@@ -21,19 +22,14 @@ class TvShowAdapter(val callback : MovieTvCallback<TvShowModel>) : PagingDataAda
         fun bind(data : TvShowModel){
             with(binding){
                 root.setOnClickListener { callback.onClick(data.id) }
-                title.text = data.title
                 Glide.with(binding.root.context)
                     .load(binding.root.context.getString(R.string.base_image_url) + data.posterUrl)
                     .apply(RequestOptions.placeholderOf(R.color.grey)
                         .error(R.color.grey))
                     .into(binding.image)
-                genre.text = data.genre.joinToString(",")
+                vote.text = kotlin.String.format("%d people vote",data.vote)
                 rating.text = data.rating.toString()
-                duration.text = DateTimeConverter.convertMinutesToHourMinutes(data.duration)
-                favIcon.setOnClickListener {
-                    callback.onFavIconClicked(data,data.isFav)
-                }
-                if(data.isFav) favIcon.setColorFilter(ContextCompat.getColor(context,R.color.pink)) else favIcon.setColorFilter(ContextCompat.getColor(context,R.color.white))
+                title.text = data.title
             }
         }
     }
@@ -44,8 +40,10 @@ class TvShowAdapter(val callback : MovieTvCallback<TvShowModel>) : PagingDataAda
         return MovieTvViewHolder(parent.context,binding, callback)
     }
 
+    override fun getItemViewType(position: Int): Int = if(position == itemCount) Constant.REGULAR_ITEM else Constant.LOADING_ITEM
+
     override fun onBindViewHolder(holder: MovieTvViewHolder, position: Int) {
-        holder.bind(getItem(position) as TvShowModel)
+        getItem(position)?.let { holder.bind(it) }
     }
 
     companion object {

@@ -12,8 +12,18 @@ import java.util.concurrent.Executors
 class RoomDataSource(val appDao: AppDao) {
     private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
 
-    fun setFavoriteMovie(movie : MovieModel) {
-        executorService.execute { appDao.setFavoriteMovie(movie) }
+    fun addFavMovie(movie : MovieModel) {
+        executorService.execute {
+            appDao.setFavoriteMovie(movie)
+            appDao.insertFavoriteMovie(FavoriteMovieEntity(movie.id))
+        }
+    }
+
+    fun deleteFavMovie(movie : MovieModel) {
+        executorService.execute {
+            appDao.setFavoriteMovie(movie)
+            appDao.deleteFavoriteMovie(FavoriteMovieEntity(movie.id))
+        }
     }
 
     fun setFavoriteTvShow(tvShow : TvShowModel) {

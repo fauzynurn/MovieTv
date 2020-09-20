@@ -59,7 +59,7 @@ class MovieTvRepository(
 
     fun setFavoriteMovie(movie: MovieModel){
         movie.isFav = !movie.isFav
-        roomDataSource.setFavoriteMovie(movie)
+        if(movie.isFav) roomDataSource.addFavMovie(movie) else roomDataSource.deleteFavMovie(movie)
     }
 
 //    fun addFavoriteTvShow(id: Int){

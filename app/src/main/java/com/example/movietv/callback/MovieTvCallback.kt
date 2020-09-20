@@ -13,6 +13,10 @@ interface GetMovieTvCallback{
     fun onSuccess(data : List<MovieModel>)
 }
 
+interface LoadStateCallback{
+    fun onRetry()
+}
+
 interface GetFavMovieTvCallback<T>{
     fun onSuccess(data : List<T>)
 }

@@ -8,7 +8,8 @@
     <color name="white">#FFFFFF</color>
     <color name="greyFade">#D0D0D0</color>
     <color name="grey">#ACABAB</color>
-    <color name="yellow">#deb522</color>
+    <color name="yellowGorse">#FFEB3B</color>
     <color name="blackFade">#393A45</color>
     <color name="pink">#E8308C</color>
+    <color name="codGray">#1C1C1C</color>
 </resources>

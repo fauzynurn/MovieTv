@@ -27,6 +27,12 @@ interface AppDao {
     @Query("DELETE FROM tvshowmodel")
     fun clearAllTvShow()
 
+    @Delete
+    fun deleteFavoriteMovie(movie : FavoriteMovieEntity)
+
+    @Delete
+    fun deleteFavoriteTvShow(tvShow : FavoriteTvShowEntity)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllMovie(list : List<MovieModel>) : List<Long>
 

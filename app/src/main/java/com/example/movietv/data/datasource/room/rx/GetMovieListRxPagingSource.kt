@@ -77,19 +77,19 @@ class GetMovieListRxPagingSource(
                 if (page == INVALID_PAGE) {
                     Single.just(MediatorResult.Success(endOfPaginationReached = true))
                 } else {
-                    service.getMovieList(
-                        page = page
-                    )
 //                    service.getMovieList(
-//                        page = page).zipWith(
-//                        roomDataSource.getAllFavMovie(), { movieResponse, favMovieIdList ->
-//                            val mergedList = movieResponse.list?.map { item ->
-//                                item.isFav = favMovieIdList.any { fav -> fav.id == item.id }
-//                                return@map item
-//                            }
-//                            movieResponse.list = mergedList
-//                            return@zipWith movieResponse
-//                        })
+//                        page = page
+//                    )
+                    service.getMovieList(
+                        page = page).zipWith(
+                        roomDataSource.getAllFavMovie(), { movieResponse, favMovieIdList ->
+                            val mergedList = movieResponse.list?.map { item ->
+                                item.isFav = favMovieIdList.any { fav -> fav.id == item.id }
+                                return@map item
+                            }
+                            movieResponse.list = mergedList
+                            return@zipWith movieResponse
+                        })
                         .map { insertToDb(page, loadType, it) }
                         .map<MediatorResult> { MediatorResult.Success(endOfPaginationReached = it.page == it.totalPages) }
                         .onErrorReturn { MediatorResult.Error(it) }
@@ -135,8 +135,6 @@ class GetMovieListRxPagingSource(
             //appRoomDatabase..insertAllMovieKey(keys)
             //roomDataSource.insertAllMovie(data.list)
 
-        } catch(ex : Exception){
-            val x = ex.message
         }
         finally {
             appRoomDatabase.endTransaction()

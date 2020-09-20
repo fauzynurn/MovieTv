@@ -19,4 +19,5 @@
     <string name="sort">sort</string>
     <string name="item_telah_dihapus">Item telah dihapus ke daftar favorit</string>
     <string name="item_telah_ditambahkan">Item telah ditambahkan ke daftar favorit</string>
+    <string name="retry">Retry</string>
 </resources>
