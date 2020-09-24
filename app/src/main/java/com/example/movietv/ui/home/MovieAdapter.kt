@@ -1,32 +1,25 @@
 package com.example.movietv.ui.home
 
 import android.content.Context
-import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 import com.example.movietv.R
 import com.example.movietv.callback.MovieTvCallback
+import com.example.movietv.data.entity.MovieEntity
 import com.example.movietv.data.model.MovieModel
 import com.example.movietv.databinding.VhItemBinding
 import com.example.movietv.utils.Constant.LOADING_ITEM
 import com.example.movietv.utils.Constant.REGULAR_ITEM
-import com.example.movietv.utils.DateTimeConverter
 
-class MovieAdapter(val callback : MovieTvCallback<MovieModel>) : PagingDataAdapter<MovieModel, MovieAdapter.MovieTvViewHolder>(DIFF_CALLBACK) {
+class MovieAdapter(val callback : MovieTvCallback<MovieEntity>) : PagingDataAdapter<MovieEntity, MovieAdapter.MovieTvViewHolder>(DIFF_CALLBACK) {
 
-    class MovieTvViewHolder(val context: Context, val binding: VhItemBinding, val callback : MovieTvCallback<MovieModel>) : RecyclerView.ViewHolder(binding.root){
-        fun bind(data : MovieModel){
+    class MovieTvViewHolder(val context: Context, val binding: VhItemBinding, val callback : MovieTvCallback<MovieEntity>) : RecyclerView.ViewHolder(binding.root){
+        fun bind(data : MovieEntity){
             with(binding){
                 root.setOnClickListener { callback.onClick(data.id) }
                 Glide.with(binding.root.context)
@@ -54,12 +47,12 @@ class MovieAdapter(val callback : MovieTvCallback<MovieModel>) : PagingDataAdapt
     override fun getItemViewType(position: Int): Int = if(position == itemCount) REGULAR_ITEM else LOADING_ITEM
 
     companion object {
-        private val DIFF_CALLBACK: DiffUtil.ItemCallback<MovieModel> = object : DiffUtil.ItemCallback<MovieModel>() {
-            override fun areItemsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
+        private val DIFF_CALLBACK: DiffUtil.ItemCallback<MovieEntity> = object : DiffUtil.ItemCallback<MovieEntity>() {
+            override fun areItemsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
+            override fun areContentsTheSame(oldItem: MovieEntity, newItem: MovieEntity): Boolean {
                 return oldItem.title == newItem.title
             }
         }

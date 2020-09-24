@@ -1,4 +1,4 @@
-package com.example.movietv.ui.home.fragment.tvshow
+package com.example.movietv.ui.favorite.fragment.tvshow
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movietv.R
 import com.example.movietv.callback.LoadStateCallback
 import com.example.movietv.callback.MovieTvCallback
@@ -26,7 +27,7 @@ import com.example.movietv.utils.Constant
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TvShowFragment : Fragment() {
+class FavoriteTvShowFragment : Fragment() {
     private val mDisposable = CompositeDisposable()
     private val viewModel by viewModel(MovieTvViewModel::class)
     private lateinit var dataBinding : FragmentTvshowBinding
@@ -70,6 +71,7 @@ class TvShowFragment : Fragment() {
                 // Show loading spinner during initial load or refresh.
                 progressBar.isVisible = it.source.refresh is LoadState.Loading
 
+                tvshowNoData.isVisible = mAdapter.itemCount == 0
                 // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
                 val errorState = it.source.append as? LoadState.Error
                     ?: it.source.prepend as? LoadState.Error
@@ -85,7 +87,8 @@ class TvShowFragment : Fragment() {
 
             }
         }
-        mDisposable.add(viewModel.getTvShowList().subscribe {
+        mDisposable.add(viewModel.getFavoriteTvShowList().subscribe {
+
             mAdapter.submitData(lifecycle, it)
         })
     }

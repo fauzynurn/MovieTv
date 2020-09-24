@@ -3,14 +3,15 @@ package com.example.movietv.ui.detail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movietv.data.model.Genre
 import com.example.movietv.databinding.VhGenreBinding
 
-class GenreAdapter(val list : List<String>) : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
+class GenreAdapter(val list : List<Genre>) : RecyclerView.Adapter<GenreAdapter.GenreViewHolder>() {
 
     class GenreViewHolder(val binding: VhGenreBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(data : String){
+        fun bind(data : Genre){
             with(binding){
-                genre.text = data
+                genre.text = data.name
             }
         }
     }

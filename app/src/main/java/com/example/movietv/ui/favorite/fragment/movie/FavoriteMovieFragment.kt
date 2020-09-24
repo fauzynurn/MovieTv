@@ -1,4 +1,4 @@
-package com.example.movietv.ui.home.fragment.tvshow
+package com.example.movietv.ui.favorite.fragment.movie
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,43 +11,44 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movietv.R
 import com.example.movietv.callback.LoadStateCallback
 import com.example.movietv.callback.MovieTvCallback
-import com.example.movietv.data.entity.TvShowEntity
-import com.example.movietv.data.model.TvShowModel
-import com.example.movietv.databinding.FragmentTvshowBinding
+import com.example.movietv.data.entity.MovieEntity
+import com.example.movietv.data.model.MovieModel
+import com.example.movietv.databinding.FragmentMovieBinding
 import com.example.movietv.ui.adapter.MovieTvLoadStateAdapter
 import com.example.movietv.ui.detail.MovieDetailActivity
-import com.example.movietv.ui.detail.TvShowDetailActivity
+import com.example.movietv.ui.home.MovieAdapter
 import com.example.movietv.ui.home.MovieTvViewModel
-import com.example.movietv.ui.home.TvShowAdapter
 import com.example.movietv.utils.Constant
+import com.example.movietv.utils.Constant.LOADING_ITEM
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TvShowFragment : Fragment() {
+class FavoriteMovieFragment : Fragment() {
     private val mDisposable = CompositeDisposable()
     private val viewModel by viewModel(MovieTvViewModel::class)
-    private lateinit var dataBinding : FragmentTvshowBinding
-    private lateinit var mAdapter: TvShowAdapter
+    private lateinit var dataBinding : FragmentMovieBinding
+    private lateinit var mAdapter: MovieAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        dataBinding =  DataBindingUtil.inflate(inflater, R.layout.fragment_tvshow, container, false)
+       dataBinding =  DataBindingUtil.inflate(inflater, R.layout.fragment_movie, container, false)
         return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        mAdapter = TvShowAdapter(object : MovieTvCallback<TvShowEntity>{
+        mAdapter = MovieAdapter(object : MovieTvCallback<MovieEntity>{
             override fun onClick(id : Long) {
                 startActivity(
-                    Intent(activity, TvShowDetailActivity::class.java)
+                    Intent(activity,MovieDetailActivity::class.java)
                         .putExtra(Constant.ID,id)
                 )
             }
         })
         with(dataBinding){
-            tvshowRv.apply {
+            movieRv.apply {
                 adapter = mAdapter.withLoadStateFooter(
                     footer = MovieTvLoadStateAdapter(object : LoadStateCallback {
                         override fun onRetry() {
@@ -57,18 +58,20 @@ class TvShowFragment : Fragment() {
                 )
                 layoutManager = GridLayoutManager(context, 2)
                     .apply {
-                        this.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
-                            override fun getSpanSize(position: Int): Int = if(mAdapter.getItemViewType(position) == Constant.LOADING_ITEM) 1 else 2
-                        }
+                    this.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
+                        override fun getSpanSize(position: Int): Int = if(mAdapter.getItemViewType(position) == LOADING_ITEM) 1 else 2
                     }
+                }
             }
         }
         mAdapter.addLoadStateListener {
             with(dataBinding){
                 // Only show the list if refresh succeeds.
-                tvshowRv.isVisible = it.source.refresh is LoadState.NotLoading
+                movieRv.isVisible = it.source.refresh is LoadState.NotLoading
                 // Show loading spinner during initial load or refresh.
                 progressBar.isVisible = it.source.refresh is LoadState.Loading
+
+                movieNoData.isVisible = mAdapter.itemCount == 0
 
                 // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
                 val errorState = it.source.append as? LoadState.Error
@@ -85,7 +88,7 @@ class TvShowFragment : Fragment() {
 
             }
         }
-        mDisposable.add(viewModel.getTvShowList().subscribe {
+        mDisposable.add(viewModel.getFavoriteMovieList().subscribe {
             mAdapter.submitData(lifecycle, it)
         })
     }

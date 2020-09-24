@@ -4,15 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.movietv.data.entity.MovieEntity
+import com.example.movietv.data.entity.TvShowEntity
 import com.example.movietv.data.model.*
 
 @Database(entities = [
-    Cast::class,MovieModel::class,
-    TvShowModel::class,
-    MovieRemoteKey::class,
-    TvShowRemoteKey::class,
-    FavoriteMovieEntity::class,
-    FavoriteTvShowEntity::class
+    MovieEntity::class,
+    TvShowEntity::class,
 ], version = 1, exportSchema = false)
 abstract class AppRoomDatabase : RoomDatabase() {
 

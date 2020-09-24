@@ -1,21 +1,11 @@
 package com.example.movietv.data.model
 
-import android.os.Parcelable
-import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import com.example.movietv.utils.converter.ListCastConverter
-import com.example.movietv.utils.converter.ListStringConverter
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Entity
-@Parcelize
-@TypeConverters(value = [ListStringConverter::class,ListCastConverter::class])
 data class MovieModel (
-    @PrimaryKey(autoGenerate = true)
-    val idInDb : Long = 0,
-    val id : Long = -1,
+    @PrimaryKey(autoGenerate = false)
+    val id : Long,
     @SerializedName("original_language")
     val language : String = "",
     val title : String = "",
@@ -27,13 +17,12 @@ data class MovieModel (
     val isForAdult : Boolean? = false,
     val overview : String = "",
 
-    val genre : List<String>? = listOf(),
+    val genres : List<Genre>? = listOf(),
 
     @SerializedName("runtime")
     val duration : Int = 0,
 
-    @SerializedName("actor_list")
-    val castList : List<Cast>? = listOf(),
+    var castList : List<Cast>? = listOf(),
 
     @SerializedName("release_date")
     val releasedDate : String? = "",
@@ -41,14 +30,6 @@ data class MovieModel (
     val rating : Double? = 0.0,
     @SerializedName("vote_count")
     val vote : Int = 0,
-    var isFav : Boolean = false
-) : Parcelable
-
-@Entity
-@Parcelize
-data class Cast(
-    @PrimaryKey(autoGenerate = false)
-    val name : String,
-    @SerializedName("profile_path")
-    val profilePath : String
-) : Parcelable
+    var isFav : Boolean = false,
+    var availableInOfflineMode : Boolean = false
+)

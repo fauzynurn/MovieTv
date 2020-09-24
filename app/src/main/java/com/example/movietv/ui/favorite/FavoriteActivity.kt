@@ -22,9 +22,4 @@ class FavoriteActivity : AppCompatActivity() {
         }
 
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.home_menu,menu)
-        return true
-    }
 }

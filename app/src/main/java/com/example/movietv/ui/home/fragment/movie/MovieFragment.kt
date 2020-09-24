@@ -14,15 +14,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.movietv.R
 import com.example.movietv.callback.LoadStateCallback
 import com.example.movietv.callback.MovieTvCallback
+import com.example.movietv.data.entity.MovieEntity
 import com.example.movietv.data.model.MovieModel
 import com.example.movietv.databinding.FragmentMovieBinding
 import com.example.movietv.ui.adapter.MovieTvLoadStateAdapter
-import com.example.movietv.ui.detail.DetailMovieTvActivity
+import com.example.movietv.ui.detail.MovieDetailActivity
 import com.example.movietv.ui.home.MovieAdapter
 import com.example.movietv.ui.home.MovieTvViewModel
 import com.example.movietv.utils.Constant
 import com.example.movietv.utils.Constant.LOADING_ITEM
-import com.example.movietv.utils.Constant.REGULAR_ITEM
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -40,26 +40,12 @@ class MovieFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        mAdapter = MovieAdapter(object : MovieTvCallback<MovieModel> {
+        mAdapter = MovieAdapter(object : MovieTvCallback<MovieEntity> {
             override fun onClick(id: Long) {
                 startActivity(
-                    Intent(activity, DetailMovieTvActivity::class.java)
-                        .putExtra(Constant.MOVIE_ID, id)
+                    Intent(activity, MovieDetailActivity::class.java)
+                        .putExtra(Constant.ID, id)
                 )
-            }
-
-            override fun onFavIconClicked(item: MovieModel, isFav: Boolean) {
-                viewModel.setMovieAsFav(item)
-                if (isFav) Toast.makeText(
-                    context,
-                    getString(R.string.item_telah_ditambahkan),
-                    Toast.LENGTH_SHORT
-                ).show()
-                else Toast.makeText(
-                    context, getString(
-                        R.string.item_telah_dihapus
-                    ), Toast.LENGTH_SHORT
-                ).show()
             }
         })
         with(dataBinding) {
@@ -82,13 +68,13 @@ class MovieFragment : Fragment() {
         mAdapter.addLoadStateListener {
             with(dataBinding){
                 // Only show the list if refresh succeeds.
-                movieRv.isVisible = it.mediator?.refresh is LoadState.NotLoading
+                movieRv.isVisible = it.source.refresh is LoadState.NotLoading
                 // Show loading spinner during initial load or refresh.
-                progressBar.isVisible = it.mediator?.refresh is LoadState.Loading
+                progressBar.isVisible = it.source.refresh is LoadState.Loading
 
                 // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
-                val errorState = it.mediator?.append as? LoadState.Error
-                    ?: it.mediator?.prepend as? LoadState.Error
+                val errorState = it.source.append as? LoadState.Error
+                    ?: it.source.prepend as? LoadState.Error
                     ?: it.append as? LoadState.Error
                     ?: it.prepend as? LoadState.Error
                 errorState?.let {

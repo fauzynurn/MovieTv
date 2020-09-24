@@ -20,4 +20,10 @@
     <string name="item_telah_dihapus">Item telah dihapus ke daftar favorit</string>
     <string name="item_telah_ditambahkan">Item telah ditambahkan ke daftar favorit</string>
     <string name="retry">Retry</string>
+    <string name="add_to_favorite">Add to Favorite</string>
+    <string name="added_to_favorite">Added to Favorite</string>
+    <string name="next_episode">Next Episode</string>
+    <string name="last_episode">Last Episode</string>
+    <string name="episodes">Episodes</string>
+    <string name="no_data">No data</string>
 </resources>

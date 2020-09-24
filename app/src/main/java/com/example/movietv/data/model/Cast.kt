@@ -1,15 +1,16 @@
 package com.example.movietv.data.model
 
 import android.os.Parcelable
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Entity
 @Parcelize
-data class FavoriteTvShowEntity (
+data class Cast(
     @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "id")
-    var id : Long = 0
+    val name : String,
+    @SerializedName("profile_path")
+    val profilePath : String
 ) : Parcelable
